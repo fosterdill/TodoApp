@@ -1,7 +1,10 @@
 package com.fosterdill.todoapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -15,11 +18,18 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         ArrayList<Something> list = new ArrayList<>();
-
-        list.add(new Something());
-
         ListView listView = (ListView) findViewById(R.id.listView);
         ArrayAdapter<Something> adapter = new ArrayAdapter<>(this, R.layout.todo_list_item_layout, list);
+        final Intent todoListItemDetail = new Intent(this, TodoListItemDetail.class);
+
+        list.add(new Something());
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(todoListItemDetail);
+            }
+        });
     }
 }
