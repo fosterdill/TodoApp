@@ -32,8 +32,6 @@ public class NewTodoListActivity extends AppCompatActivity {
         TodoList newTodoList = new TodoList(null, editText.getText().toString(), descEditText.getText().toString());
         Intent resultIntent = new Intent();
 
-
-
         daoSession.insert(newTodoList);
         resultIntent.putExtra("todoListId", newTodoList.getId().longValue());
         setResult(RESULT_OK, resultIntent);
